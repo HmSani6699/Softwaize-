@@ -1,0 +1,18 @@
+.ul {
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+  list-style: none;
+  border: 2px solid red;
+}
+
+.ul li .nav_title {
+  display: flex;
+  align-content: center;
+  gap: 20px;
+}
+.ul li .nav_title h2 {
+  margin: 0;
+  font-size: 30px;
+  color: gainsboro;
+}
