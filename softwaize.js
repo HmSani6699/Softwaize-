@@ -41,12 +41,133 @@ const containerStyle = `
     font-weight: 100;
     letter-spacing: 10px;
 }
+
+#hero_container {
+    display: flex;
+    flex-wrap: nowrap; 
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory; 
+    padding: 10px 0; 
+    scrollbar-width: none;
+    margin-top: 40px;
+    gap:30px;
+}
+#hero_container #box h2 {
+   text-align: center;
+   font-size: 17px;
+    color: #363636e6;
+}
+#hero_container #box , #cart_container #box{
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#hero_container::-webkit-scrollbar {
+    display: none; 
+}
+
+.hero_item {
+    flex: 0 0 auto; 
+    width: 86px; 
+    height: 86px;
+    scroll-snap-align: start; 
+    background: #dcdcdc6e;
+    border-radius: 100%;
+    overflow: hidden;
+}
+
+.hero_item img , #cart_container #box .cart_item img {
+    width: 100%;
+    height: 100%; 
+    object-fit: cover;
+    border-radius: 10px; 
+}
+
+
+#cart_container{
+  display: flex;
+    flex-wrap: nowrap; 
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory; 
+    padding: 10px 0; 
+    scrollbar-width: none;
+    margin-top: 40px;
+    gap:30px;
+}
+
+#cart_container #box .cart_item {
+    flex: 0 0 auto; 
+    width: 150px; 
+    height: 200px;
+    scroll-snap-align: start; 
+    background: #dcdcdc6e;
+    overflow: hidden;
+}
+
+#cart_container #box h2{
+ text-align: center;
+   font-size: 20px;
+    color: #363636e6;
+}
+
 `;
 
 const styleTag = document.createElement("style");
 styleTag.innerHTML = containerStyle;
 document.head.appendChild(styleTag);
 
+// ======>All image <========//
+const allImage = [
+  {
+    id: 1,
+    name: "Best Sellers",
+    url: "https://storage.googleapis.com/abtest-img-bucket/jmp-9.2-sub-category-images/best-sellers.png",
+  },
+  {
+    id: 2,
+    name: "New",
+    url: "https://storage.googleapis.com/abtest-img-bucket/jmp-9.2-sub-category-images/new.png",
+  },
+  {
+    id: 3,
+    name: "Necklaces",
+    url: "https://storage.googleapis.com/abtest-img-bucket/jmp-9.2-sub-category-images/necklaces.png",
+  },
+  {
+    id: 4,
+    name: "Rings",
+    url: "https://storage.googleapis.com/abtest-img-bucket/jmp-9.2-sub-category-images/rings.png",
+  },
+  {
+    id: 5,
+    name: "Earrings",
+    url: "https://storage.googleapis.com/abtest-img-bucket/jmp-9.2-sub-category-images/bracelets.png",
+  },
+  {
+    id: 6,
+    name: "Personalized",
+    url: "https://storage.googleapis.com/abtest-img-bucket/jmp-9.2-sub-category-images/personalized.png",
+  },
+  {
+    id: 7,
+    name: "Fine",
+    url: "https://storage.googleapis.com/abtest-img-bucket/jmp-9.2-sub-category-images/fine.png",
+  },
+  {
+    id: 8,
+    name: "Clearance",
+    url: "https://storage.googleapis.com/abtest-img-bucket/jmp-9.2-sub-category-images/clearance.png",
+  },
+  {
+    id: 9,
+    name: "Sale",
+    url: "https://storage.googleapis.com/abtest-img-bucket/jmp-9.2-sub-category-images/jm-fine-sample.png",
+  },
+];
+
+//========> Navbar  <========//
 const navbar = document.createElement("nav");
 container.appendChild(navbar);
 
@@ -73,6 +194,57 @@ ul.innerHTML = `
     </div>
 </li>
 `;
+
+//========> Hero Container  <========//
+const heroContainer = document.createElement("div");
+container.appendChild(heroContainer);
+heroContainer.id = "hero_container";
+
+const heroItems = allImage
+  .map(
+    (item) => `
+  <div id="box">
+    <div class="hero_item"> <a target="_blank" href="https://jamesmichelle.com/collections/necklaces"> <img src="${item.url}" alt="image" />
+    </a>
+    </div>
+    <h2>${item?.name}</h2>
+  </div>
+`
+  )
+  .join("");
+
+heroContainer.innerHTML = heroItems;
+
+//========> Banner Container  <========//
+const bannerContainer = document.createElement("div");
+container.appendChild(bannerContainer);
+bannerContainer.id = "banner_container";
+
+bannerContainer.innerHTML = `
+ <div ><img src="https://ibb.co.com/zhKnFKH" alt="image" />
+ <h2>Banner</h2>
+    </div>
+`;
+
+//========> Tab Container  <========//
+const cartContainer = document.createElement("div");
+container.appendChild(cartContainer);
+cartContainer.id = "cart_container";
+
+const cartItems = allImage
+  .map(
+    (item) => `
+  <div id="box">
+    <div class="cart_item"> <a target="_blank" href="https://jamesmichelle.com/collections/necklaces"> <img src="${item.url}" alt="image" />
+    </a>
+    </div>
+    <h2>${item?.name}</h2>
+  </div>
+`
+  )
+  .join("");
+
+cartContainer.innerHTML = cartItems;
 
 main.appendChild(container);
 console.log(main);
