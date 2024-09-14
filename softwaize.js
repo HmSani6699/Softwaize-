@@ -330,5 +330,5 @@ document.addEventListener("DOMContentLoaded", () => {
   cartContainer.innerHTML = cartItems;
 
   main.appendChild(container);
-  console.log(main);
+  console.log(container);
 });
