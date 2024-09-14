@@ -1,12 +1,21 @@
-// =======> Main container <======//
-const main = document.getElementById("main");
+document.addEventListener("DOMContentLoaded", () => {
+  // =======> Main container <======//
+  const main = document.getElementById("main");
 
-// =======> Main container <======//
-const container = document.createElement("div");
-container.id = "main_container";
+  // =======> Main container check <======//
+  if (!main) {
+    console.error("Main container not found!");
+    return;
+  }
 
-//========> Apply CSS styles to the container using JS <======//
-const containerStyle = `
+  // =======> Main container <======//
+  const container = document.createElement("div");
+  container.id = "main_container";
+
+  //========> All CSS styles to the container using JS <======//
+  const containerStyle = `
+
+/*==========> Main Container Style<=========  */
   #custom-container {
     width: 100%;
     height: 100vh;
@@ -17,6 +26,7 @@ const containerStyle = `
     margin-bottom: 20px;
   }
 
+/*==========> Navbar Container Style <=========  */
  #nav_list {
   display: flex;
   align-content: center;
@@ -35,147 +45,203 @@ const containerStyle = `
   gap: 20px;
 }
 #nav_list li .nav_title h2 {
-     margin: 0;
-    font-size: 20px;
-    color: #363636e6;
-    font-weight: 100;
-    letter-spacing: 10px;
+  margin: 0;
+  font-size: 20px;
+  color: #363636e6;
+  font-weight: 100;
+  letter-spacing: 6px;
 }
 
+/*==========> Hero Container  Style <=========  */
 #hero_container {
-    display: flex;
-    flex-wrap: nowrap; 
-    overflow-x: scroll;
-    scroll-snap-type: x mandatory; 
-    padding: 10px 0; 
-    scrollbar-width: none;
-    margin-top: 40px;
-    gap:30px;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  padding: 10px 0;
+  scrollbar-width: none;
+  margin-top: 40px;
+  gap:20px;
 }
 #hero_container #box h2 {
-   text-align: center;
-   font-size: 17px;
-    color: #363636e6;
+  text-align: center;
+  font-size: 17px;
+  color: #363636e6;
 }
 #hero_container #box , #cart_container #box{
   display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 #hero_container::-webkit-scrollbar {
-    display: none; 
+  display: none;
 }
 
 .hero_item {
-    flex: 0 0 auto; 
-    width: 86px; 
-    height: 86px;
-    scroll-snap-align: start; 
-    background: #dcdcdc6e;
-    border-radius: 100%;
-    overflow: hidden;
+  flex: 0 0 auto;
+  width: 86px;
+  height: 86px;
+  scroll-snap-align: start;
+  background: #dcdcdc6e;
+  border-radius: 100%;
+  overflow: hidden;
 }
 
 .hero_item img , #cart_container #box .cart_item img {
-    width: 100%;
-    height: 100%; 
-    object-fit: cover;
-    border-radius: 10px; 
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
+/*==========> Banner Container style <=========  */
+#banner_container {
+  height: 450px;
+  background: #bdb5ad94;
+  padding: 100px 10px 20px 10px;
+}
 
+#banner_container .up_to {
+  margin-bottom: 0;
+}
+
+#banner_container h2 {
+  margin-top: 0;
+  text-align: center;
+  font-size: 63px;
+  font-weight: 100;
+}
+
+#banner_container h4 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 200;
+}
+
+#banner_container h4 span {
+  font-weight: 700;
+}
+
+#banner_container h4 span a {
+  color: black;
+}
+
+#banner_container .shop_button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+#banner_container .shop_button button {
+  color: white;
+  text-align: center;
+  background: #000;
+  border: none;
+  padding: 10px 20px;
+  width: 200px;
+}
+
+#banner_container .short_description {
+  text-align: center;
+  margin-top: 50px;
+}
+
+/*==========> Cart Container <=========  */
 #cart_container{
   display: flex;
-    flex-wrap: nowrap; 
-    overflow-x: scroll;
-    scroll-snap-type: x mandatory; 
-    padding: 10px 0; 
-    scrollbar-width: none;
-    margin-top: 40px;
-    gap:30px;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  padding: 10px 0;
+  scrollbar-width: none;
+  margin-top: 50px;
+  gap:20px;
 }
 
 #cart_container #box .cart_item {
-    flex: 0 0 auto; 
-    width: 150px; 
-    height: 200px;
-    scroll-snap-align: start; 
-    background: #dcdcdc6e;
-    overflow: hidden;
+  flex: 0 0 auto;
+  width: 150px;
+  height: 200px;
+  scroll-snap-align: start;
+  background: #dcdcdc6e;
+  overflow: hidden;
 }
 
 #cart_container #box h2{
- text-align: center;
-   font-size: 20px;
-    color: #363636e6;
+  text-align: center;
+  font-size: 20px;
+  color: #363636e6;
 }
 
 `;
 
-const styleTag = document.createElement("style");
-styleTag.innerHTML = containerStyle;
-document.head.appendChild(styleTag);
+  const styleTag = document.createElement("style");
+  styleTag.innerHTML = containerStyle;
+  document.head.appendChild(styleTag);
 
-// ======>All image <========//
-const allImage = [
-  {
-    id: 1,
-    name: "Best Sellers",
-    url: "https://storage.googleapis.com/abtest-img-bucket/jmp-9.2-sub-category-images/best-sellers.png",
-  },
-  {
-    id: 2,
-    name: "New",
-    url: "https://storage.googleapis.com/abtest-img-bucket/jmp-9.2-sub-category-images/new.png",
-  },
-  {
-    id: 3,
-    name: "Necklaces",
-    url: "https://storage.googleapis.com/abtest-img-bucket/jmp-9.2-sub-category-images/necklaces.png",
-  },
-  {
-    id: 4,
-    name: "Rings",
-    url: "https://storage.googleapis.com/abtest-img-bucket/jmp-9.2-sub-category-images/rings.png",
-  },
-  {
-    id: 5,
-    name: "Earrings",
-    url: "https://storage.googleapis.com/abtest-img-bucket/jmp-9.2-sub-category-images/bracelets.png",
-  },
-  {
-    id: 6,
-    name: "Personalized",
-    url: "https://storage.googleapis.com/abtest-img-bucket/jmp-9.2-sub-category-images/personalized.png",
-  },
-  {
-    id: 7,
-    name: "Fine",
-    url: "https://storage.googleapis.com/abtest-img-bucket/jmp-9.2-sub-category-images/fine.png",
-  },
-  {
-    id: 8,
-    name: "Clearance",
-    url: "https://storage.googleapis.com/abtest-img-bucket/jmp-9.2-sub-category-images/clearance.png",
-  },
-  {
-    id: 9,
-    name: "Sale",
-    url: "https://storage.googleapis.com/abtest-img-bucket/jmp-9.2-sub-category-images/jm-fine-sample.png",
-  },
-];
+  // ======>All image <========//
+  const allImage = [
+    {
+      id: 1,
+      name: "Best Sellers",
+      url: "https://storage.googleapis.com/abtest-img-bucket/jmp-9.2-sub-category-images/best-sellers.png",
+    },
+    {
+      id: 2,
+      name: "New",
+      url: "https://storage.googleapis.com/abtest-img-bucket/jmp-9.2-sub-category-images/new.png",
+    },
+    {
+      id: 3,
+      name: "Necklaces",
+      url: "https://storage.googleapis.com/abtest-img-bucket/jmp-9.2-sub-category-images/necklaces.png",
+    },
+    {
+      id: 4,
+      name: "Rings",
+      url: "https://storage.googleapis.com/abtest-img-bucket/jmp-9.2-sub-category-images/rings.png",
+    },
+    {
+      id: 5,
+      name: "Earrings",
+      url: "https://storage.googleapis.com/abtest-img-bucket/jmp-9.2-sub-category-images/bracelets.png",
+    },
+    {
+      id: 6,
+      name: "Personalized",
+      url: "https://storage.googleapis.com/abtest-img-bucket/jmp-9.2-sub-category-images/personalized.png",
+    },
+    {
+      id: 7,
+      name: "Fine",
+      url: "https://storage.googleapis.com/abtest-img-bucket/jmp-9.2-sub-category-images/fine.png",
+    },
+    {
+      id: 8,
+      name: "Clearance",
+      url: "https://storage.googleapis.com/abtest-img-bucket/jmp-9.2-sub-category-images/clearance.png",
+    },
+    {
+      id: 9,
+      name: "Sale",
+      url: "https://storage.googleapis.com/abtest-img-bucket/jmp-9.2-sub-category-images/jm-fine-sample.png",
+    },
+  ];
 
-//========> Navbar  <========//
-const navbar = document.createElement("nav");
-container.appendChild(navbar);
+  //========> Navbar  <========//
+  const navbar = document.createElement("nav");
+  container.appendChild(navbar);
 
-const ul = document.createElement("ul");
-navbar.appendChild(ul);
-ul.id = "nav_list";
+  const ul = document.createElement("ul");
+  navbar.appendChild(ul);
+  ul.id = "nav_list";
 
-ul.innerHTML = `
+  ul.innerHTML = `
 
  <li>
     <div> <svg width="20" height="20" viewBox="0 0 52 52" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"><path d="M50 12.5H2a2 2 0 0 1 0-4h48a2 2 0 0 1 0 4M50 28H2a2 2 0 0 1 0-4h48a2 2 0 0 1 0 4m0 15.5H2a2 2 0 0 1 0-4h48a2 2 0 0 1 0 4"/></svg></div>
@@ -195,14 +261,14 @@ ul.innerHTML = `
 </li>
 `;
 
-//========> Hero Container  <========//
-const heroContainer = document.createElement("div");
-container.appendChild(heroContainer);
-heroContainer.id = "hero_container";
+  //========> Hero Container  <========//
+  const heroContainer = document.createElement("div");
+  container.appendChild(heroContainer);
+  heroContainer.id = "hero_container";
 
-const heroItems = allImage
-  .map(
-    (item) => `
+  const heroItems = allImage
+    .map(
+      (item) => `
   <div id="box">
     <div class="hero_item"> <a target="_blank" href="https://jamesmichelle.com/collections/necklaces"> <img src="${item.url}" alt="image" />
     </a>
@@ -210,30 +276,47 @@ const heroItems = allImage
     <h2>${item?.name}</h2>
   </div>
 `
-  )
-  .join("");
+    )
+    .join("");
 
-heroContainer.innerHTML = heroItems;
+  heroContainer.innerHTML = heroItems;
 
-//========> Banner Container  <========//
-const bannerContainer = document.createElement("div");
-container.appendChild(bannerContainer);
-bannerContainer.id = "banner_container";
+  //========> Banner Container  <========//
+  const bannerContainer = document.createElement("div");
+  container.appendChild(bannerContainer);
+  bannerContainer.id = "banner_container";
 
-bannerContainer.innerHTML = `
- <div ><img src="https://ibb.co.com/zhKnFKH" alt="image" />
- <h2>Banner</h2>
-    </div>
+  bannerContainer.innerHTML = `
+      <p class="up_to">up to</p>
+
+      <h2>30% OFF SITEWIDE</h2>
+
+      <h4>
+        30% OFF Sitewide | <span>Code: <a href="">MEMORIAL30</a> </span>
+      </h4>
+
+      <h4>
+        20% OFF Fine | <span>Code: <a href="">FINE20</a> </span>
+      </h4>
+
+      <div class="shop_button">
+        <button>SHOP THE SALE</button>
+      </div>
+
+      <p class="short_description">
+        <i>Lorem ipsum dolor, sit amet consectetur adipisicing</i> <br />
+        <i>Laborum hic ex dicta in distinctio quibusdam.</i>
+      </p>
 `;
 
-//========> Tab Container  <========//
-const cartContainer = document.createElement("div");
-container.appendChild(cartContainer);
-cartContainer.id = "cart_container";
+  //========> Tab Container  <========//
+  const cartContainer = document.createElement("div");
+  container.appendChild(cartContainer);
+  cartContainer.id = "cart_container";
 
-const cartItems = allImage
-  .map(
-    (item) => `
+  const cartItems = allImage
+    .map(
+      (item) => `
   <div id="box">
     <div class="cart_item"> <a target="_blank" href="https://jamesmichelle.com/collections/necklaces"> <img src="${item.url}" alt="image" />
     </a>
@@ -241,10 +324,11 @@ const cartItems = allImage
     <h2>${item?.name}</h2>
   </div>
 `
-  )
-  .join("");
+    )
+    .join("");
 
-cartContainer.innerHTML = cartItems;
+  cartContainer.innerHTML = cartItems;
 
-main.appendChild(container);
-console.log(main);
+  main.appendChild(container);
+  console.log(main);
+});
